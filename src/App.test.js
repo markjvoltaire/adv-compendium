@@ -130,16 +130,22 @@ const pokemon = [
 ];
 
 const server = setupServer(
-  rest.get('https://pokedex-alchemy.herokuapp.com/api/pokedex?', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({}));
+  rest.get('https://pokedex-alchemy.herokuapp.com/api/pokedex', (req, res, ctx) => {
+    return res(ctx.json(pokemon));
   })
 );
 
-test.only('title renders on page', async () => {
+beforeAll(() => server.listen());
+
+afterAll(() => server.close());
+
+test.only('App renders on page', async () => {
   render(<App />);
 
   const heading = await screen.findByRole('heading', {
     name: /pokemon/i,
   });
+  const pokemons = await screen.findAllByRole('listitem');
   expect(heading).toBeInTheDocument();
+  expect(pokemons).toHaveLength(20);
 });
