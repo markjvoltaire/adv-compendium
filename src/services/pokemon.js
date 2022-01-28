@@ -8,8 +8,17 @@ export async function getPokemon(query, type) {
   const response = await fetch(
     `https://pokedex-alchemy.herokuapp.com/api/pokedex?${params.toString()}`
   );
-  const data = await response.json();
-  return data;
+  const { results } = await response.json();
+  const newData = results.map((poke) => {
+    return {
+      id: poke.id,
+      pokemon: poke.pokemon,
+      url_image: poke.url_image,
+      type_1: poke.type_1,
+    };
+  });
+  console.log(newData);
+  return newData;
 }
 
 export async function getType() {
