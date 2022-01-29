@@ -5,7 +5,6 @@ import App from './App';
 import { rest } from 'msw';
 
 import { setupServer } from 'msw/node';
-import PokemonList from './component/PokemonList';
 import userEvent from '@testing-library/user-event';
 
 const pokemon = {
