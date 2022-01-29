@@ -14,6 +14,7 @@ function App() {
     const fetchData = async () => {
       const data = await getPokemon(query, type);
       setPokemon(data);
+      // console.log('app.js log', data);
       setLoading(false);
     };
     if (loading) {

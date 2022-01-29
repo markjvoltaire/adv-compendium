@@ -28,7 +28,8 @@ export async function getPokemon(query) {
     `https://pokedex-alchemy.herokuapp.com/api/pokedex?${params.toString()}`
   );
   const data = await response.json();
-  return data;
+  // console.log('services log', data);
+  return data.results;
 }
 
 export async function getType() {
